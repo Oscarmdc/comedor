@@ -1,0 +1,22 @@
+{% load static %}
+
+{% block content %}
+    {% for p in productos %}
+        <!-- imprimo los productos -->
+        <form method="post" id="FormProductos" class="">
+            {% csrf_token %}
+            <button class="tarjeta-producto btn-play btn-play box-shadow pointer" name="form_type" value="FormProductos">
+                {% if p.imagen %}
+                <img src="{{p.imagen.url}}" alt="imagen-producto" class="pointer">
+                {% else %}
+                <img src="{% static '/IMG/camara.png' %}" alt="imagen-producto" class="pointer">
+                {% endif %}
+                <input type="hidden" name="id" value="{{p.id}}">
+                <input type="hidden" name="nombre" value="{{p.nombre}}">
+                <input type="hidden" name="precio" value="{{p.precio}}">
+                <input type="hidden" name="categoria" value="{{p.categoria}}">
+                <p>{{p.nombre}}</p>
+            </button>
+        </form>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <div class="contenedor-menu">
+        <a href="{% url 'Caja' %}" class="link-tarjeta">
+            <div class="tarjeta-opcion">
+                <img src="{% static '/IMG/caja-registradora.png' %}" alt="Imagen caja registradora">
+                <h3>Caja</h3>
+                <p>Captura productos, inicia y cierra turnos y genera ventas</p>
+            </div>
+        </a>
+        <a href="{% url 'admin:index' %}" class="link-tarjeta">
+            <div class="tarjeta-opcion">
+                <img src="{% static '/IMG/administrador.png' %}" alt="Imagen administrador">
+                <h3>Administrador</h3>
+                <p>Crea y  modifica produtos, categorias, etc.</p>
+            </div>
+        </a>
+        
+        
+        
+        <!-- <a href="{% url 'Productos' %}" class="link-tarjeta" >
+            <div class="tarjeta-opcion">
+                <img src="{% static '/IMG/Productos.png' %}" alt="Imagen productos">
+                <h3>Productos</h3>
+                <p>Descripción</p>
+            </div>
+        </a>
+        <a href="{% url 'Informes' %}" class="link-tarjeta" >
+            <div class="tarjeta-opcion">
+                <img src="{% static '/IMG/informes.png' %}" alt="Imagen informe">
+                <h3>Informes</h3>
+                <p>Descripción</p>
+            </div>
+        </a>
+        <a href="{% url 'Ventas' %}" class="link-tarjeta" >
+            <div class="tarjeta-opcion">
+                <img src="{% static '/IMG/Ventas.png' %}" alt="Imagen ventas">
+                <h3>Ventas</h3>
+                <p>Descripción</p>
+            </div>
+        </a> -->
+
+    </div>
+</div>
+{% endblock %}
+    

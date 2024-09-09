@@ -1,0 +1,25 @@
+{% load static %}
+{% block content %}
+    <div class="caja-productos-titulos">
+        <p class="cpt-1">Producto</p>
+        <p class="cpt-2">Precio</p>
+        <p class="cpt-3">Eliminar</p>
+    </div>
+    <!-- imprimo la lista de los productos seleccionados -->
+    {% for lp in lista_productos %}
+        <form method="post" id="FormListaProductos">
+            <div class="lista-productos-row">
+                {% csrf_token %}
+                <p>{{lp.1}}</p>
+                <h3>${{lp.2}}</h3>
+                <button class="btn-eliminar-producto-lista" name="form_type" value="FormListaProductos">
+                    <img src="{% static '/IMG/eliminar.png' %}" alt="boton de eliminar" class="img-eliminar-producto-lista pointer" >
+                    <input type="hidden" name="id" value="{{lp.0}}">
+                    <input type="hidden" name="nombre" value="{{lp.1}}">
+                    <input type="hidden" name="precio" value="{{lp.2}}">
+                    <input type="hidden" name="categoria" value="{{lp.3}}">
+                </button>
+            </div>
+        </form>
+    {% endfor %}
+{% endblock %}

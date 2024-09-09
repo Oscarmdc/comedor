@@ -1,0 +1,186 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/CSS/caja.css' %}">
+<div class="contenedor-caja">
+    <div class="contenedor-caja-venta">
+
+        <div id="var-control-turno" data-turno="{{ turno_abierto }}"></div>
+
+        <div class="caja-productos">
+            {% include 'productos.html' %}
+        </div> <!-- fin contenedor productos -->
+
+        <div class="caja-venta">
+            <div class="caja-venta-titulo">
+                <h3>Carrito</h3>
+                <h3>N° de orden: <span>{{numero_orden}}</span></h3>
+            </div>
+            <div class="lista-productos">
+                {% include 'listaProductos.html' %}
+            </div>
+
+            <div class="content-detalles-btn-venta">
+                <div class="detalles-costos">
+                    <p class="gris">Sub total: <span>{{subtotal}}</span></p>
+                    <p class="gris">IVA: <span>{{iva}}</span></p>
+                    <p class="caja-total">Total: <span id="lblCajaTotal">{{total}}</span></p>
+                </div>
+                
+                <div class="botones-venta">
+                    <form method="post"> {% csrf_token %}
+                        <button
+                            type="button"
+                            name="form_type"  
+                            value="btn-pagar-orden" 
+                            id="btn-modal-pagar-orden" 
+                            class="pointer verde btn-caja">
+                            Pagar
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="{{error}}" id="{{error}}">
+                <p>{{mensaje_error }}</p>
+            </div>
+            
+        </div> <!-- Fin contenedor venta -->
+    </div>
+
+
+    <div class="contenedor-caja-filtros">
+        <div class="caja-filtros">
+            {% include 'filtroProductos.html' %}
+        </div>
+
+        <div class="caja-turno">
+            <form method="post"> {% csrf_token %}
+                <button type="button" class="btn-turno pointer btn-play" id="btn-abrir-turno">
+                    <img src="{% static '/IMG/iniciar-sesion.png' %}" alt="" >
+                </button>
+                <p>Abrir turno</p>
+            </form>
+            
+            <form method="post"> {% csrf_token %}
+                <button type="button" class="btn-turno pointer btn-play" id="btn-cerrar-turno">
+                    <img src="{% static '/IMG/cerrar-sesion.png' %}" alt="">
+                </button>
+                <p>Cerrar turno</p>
+            </form>
+            <form>
+                <button id="pantallaCompletaBtn" class="btn-turno pointer btn-play">
+                    <img src="{% static '/IMG/maximizar.png' %}" alt="Imagen administrador">
+                </button>
+                <p>Pantalla Completa</p>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<dialog id="modal-abrir-turno" class="modal-caja">
+    <div class="contenido-modal">
+        <h2>Abrir turno</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="imput-fecha-turno">Fecha y hora de apertura</label>
+            <input type="text" id="imput-fecha-turno" value="" readonly disabled>
+            <label for="monto">Monto inicial</label>
+            <input type="number" name="monto" value="0" id="monto" min="0">
+            <div class="contenedor-btns-form-modal">
+                <button id="btn-cancelar-abrirTurno" class="pointer rojo">Cancelar</button>
+                <button 
+                    name="form_type"  
+                    value="FormAbrirTurno" 
+                    id="btn-aceptar-abrirTurno" 
+                    class="pointer verde">
+                    Aceptar
+                </button>
+            </div>
+        </form>
+    </div>
+</dialog>
+
+<dialog id="modal-cerrar-turno" class="modal-caja">
+    <div class="contenido-modal">
+        <h2>Cerrar turno</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="imput-cierre-turno">Fecha de cierre</label>
+            <input type="datetime" id="imput-cierre-turno" name="txtFechaCerrarTurno" value="" readonly>
+
+            <label>Numero de ordenes</label>
+            <input type="number" name="numero_orden_p" value="{{numero_orden}}" readonly>
+
+            <label>Total efectivo</label>
+            <input type="number" name="total_efectivo_p" value="{{total_efectivo}}" readonly>
+
+            <label>Total tarjeta</label>
+            <input type="number" name="total_tarjeta_p" value="{{total_tarjeta}}" readonly>
+            
+            <div class="contenedor-btns-form-modal">
+                <button id="btn-cancelar-cerrarTurno" class="rojo">Cancelar</button>
+                <button 
+                    type="submit"
+                    name="form_type"  
+                    value="FormCerrarTurno" 
+                    id="btn-aceptar-cerrarTurno" 
+                    class="verde">
+                    Aceptar</button>
+            </div>
+        </form>
+    </div>
+</dialog>
+
+<dialog id="modal-pagar-orden" class="modal-caja">
+    <div class="contenido-modal">
+        <h2>Pagar orden</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="monto-total-2" value="{{total}}" id="montoTotalPago">
+            <label for="monto">Efectivo</label>
+            <input type="number" name="monto-efectivo" value="{{total}}" id="montoEfectivoPago" min="0" step="0.01">
+            <label for="monto">Tarjeta</label>
+            <input type="number" name="monto-tarjeta" value="0" id="montoTarjetaPago" min="0" max="{{total}}" step="0.02">
+            
+            <input type="hidden" name="monto-cambio" value="0" id="montoCambioPago">
+
+            <div class="modal-detalle-montos">
+                <div class="modal-detalle-montos-div">
+                    <h3>Total $</h3>
+                    <p id="txtOrdenTotalPagar">{{total}}</p>
+                </div>
+                <div class="modal-detalle-montos-div">
+                    <h3>Efectivo $</h3>
+                    <p id="txtOrdenEfectivo">{{total}}</p>
+                </div>
+                <div class="modal-detalle-montos-div">
+                    <h3>Tarjeta $</h3>
+                    <p id="txtOrdenTarjeta">0</p>
+                </div>
+                <hr class="linea-negra">
+                <div class="modal-detalle-montos-div">
+                    <h3 id="lblOrdenCambio">Cambio $</h3>
+                    <p id="txtOrdenCambio"></p>
+                </div>  
+            </div>
+            <div class="contenedor-btns-form-modal">
+                <button id="btn-cancelar-pagarOrden" class="pointer rojo pointer" step="0.04">Cancelar</button>
+                <button 
+                    name="form_type"  
+                    value="FormPagarOrden" 
+                    id="btn-form-pagar-orden" 
+                    class="pointer verde extralargo pointer btn-presionado"
+                    step="0.03">
+                    Pagar orden
+                </button>
+            </div>
+        </form>
+    </div>
+</dialog>
+
+<script src="{% static '/JS/caja.js' %}"></script>
+
+{% endblock %}

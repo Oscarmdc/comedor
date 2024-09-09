@@ -1,0 +1,22 @@
+{% load static %}
+
+{% block content %}
+    {% for c in categorias %}
+        <form method="post" id="FormFiltroProductos">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{c.id}}">
+            <input type="hidden" name="nombre" value="{{c.nombre}}">
+            <button name="form_type" value="FormFiltroProductos" class="pointer btn-play .box-shadow">
+                <p>{{c.nombre}}</p>
+            </button>
+        </form>
+    {% endfor %}
+    
+    <form method="post" id="FormFiltroTodosProductos">
+        {% csrf_token %}
+        <button name="form_type" value="FormFiltroTodosProductos" class="pointer btn-play .box-shadow">
+            <img src="{% static '/IMG/todo.png' %}" alt="">
+        </button>
+        <p>Todos</p>
+    </form>
+{% endblock %}

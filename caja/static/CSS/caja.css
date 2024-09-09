@@ -1,0 +1,448 @@
+/* GLOBAL */
+:root{
+    --verde: #66BB6A;
+    --rojo: #BB6666;
+    --sombra: 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor-caja{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#turno_abierto{
+    display: none;
+}
+
+/* Contenedor lista productos y venta */
+
+/* Productos */
+.contenedor-caja-venta{
+    width: auto;
+    height: 80%;
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+}
+
+.caja-productos{
+    background-color: #D9D9D9;
+    width: 70%;
+    height: auto;
+    border-radius: 10px;
+    overflow-y: scroll;
+    /* Aplicar grid o flex */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 200px;
+    gap: 10px;
+}
+
+/* 1920 en adelante*/
+@media (min-width : 1800px) {
+    .caja-productos {
+        background-color: #D9D9D9;
+        width: 70%;
+        height: auto;
+        border-radius: 10px;
+        overflow-y: scroll;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 200px;
+        gap: 10px;
+    }
+}
+
+
+.caja-productos form{
+    margin: 0;
+    padding: 0;
+}
+
+.tarjeta-producto{
+    background-color: #c1c0c0;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+}
+
+.tarjeta-producto img{
+    margin-top: 5px;
+    width: 150px;
+    height: 150px;
+}
+
+/* Ventas */
+.caja-venta {
+    background-color: #D9D9D9;
+    width: 30%;
+    height: auto;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.caja-venta-titulo{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.caja-productos-titulos{
+    background-color: #c1c0c0;
+    display: flex;
+    border-radius: 5px 0 0 0;
+    /* justify-content: space-between; */
+}
+
+.caja-productos-titulos p{
+    margin: 5px 15px;
+}
+
+.cpt-1{
+    width: 65% ;
+}
+.cpt-2{
+    width: 20% ;
+}
+.cpt-3{
+    width: 15% ;
+}
+
+.lista-productos{
+    width: auto;
+    height: 50%;
+    background-color: #F8F8F8;
+    overflow-y: scroll;
+    border-radius: 5px 0 0 0;
+}
+
+.lista-productos-row{
+    display: flex;
+    /* background-color: #c1c0c0; */
+    background-color: rgb(207, 196, 182);
+    border-radius: 5px;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista-productos-row p{
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 60%;
+}
+
+.lista-productos-row h3{
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 30%;
+}
+
+.lista-productos-row button{
+    background-color: rgba(0, 0, 0, .0);
+    border: none;
+    align-items: end;
+}
+
+.img-eliminar-producto-lista {
+    border-radius: 5px;
+}
+
+
+.content-detalles-btn-venta{
+    display: flex;
+    
+}
+
+.detalles-costos{
+    text-align: end;
+    margin-right: 20px;
+    width: 60%;
+
+}
+
+.detalles-costos p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.gris {
+    color: rgb(135, 135, 135);
+}
+
+.caja-total{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: black;
+}
+
+.caja-total span{
+    font-weight: 600;
+    color: black;
+}
+
+.botones-venta{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+#btn-caja-generar-venta{
+    background-color: #66BB6A ;
+}
+
+#btn-caja-cancelar-venta{
+    background-color: #BB6666;
+}
+
+.botones-venta button{
+    height: 60px;
+    width: 150px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.2) ;
+}
+
+.box-shadow{
+    box-shadow: 3px 3px 3px 0px var(--sobra)
+}
+
+
+/* Contenedor filtros y botones del turno */
+
+/* FILTROS */
+.contenedor-caja-filtros{
+    background-color: #D9D9D9;
+    width: auto;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.caja-filtros{
+    width: 70%;
+    scrollbar-width: auto;
+    display: flex;
+}
+.caja-filtros button{
+    height: 80px;
+    width: 120px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+    background-color: rgb(207, 196, 182);
+}
+.caja-filtros button img{
+    height: 60px;
+    width: 60px;
+}
+.caja-filtros p{
+    text-align: center;
+    margin: 0;
+    margin-top: 5px;
+}
+
+
+/* TURNOS */
+.caja-turno{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-turno, .btn-cerrar-turno{
+    margin: 5px;
+    height: 80px;
+    width: 120px;
+    border-radius: 5px;
+    border: 0;
+    padding: 10px;
+    background-color: rgb(207, 196, 182);
+}
+
+.btn-turno:disabled {
+    background-color: rgb(207, 196, 182); /* Mantiene el color original */
+    opacity: 0.6; /* Se ve más claro y opaco */
+    cursor: not-allowed; /* Desactiva el cursor interactivo */
+}
+
+.btn-turno img{
+    width: auto;
+    height: 96%;
+}
+
+.caja-turno p{
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Estilos modales */
+.modal-caja::backdrop {
+    background-color: rgba(0, 0, 0, .55);
+}
+.modal-caja {
+    border: none;
+    border-radius: 5px;
+}
+.contenido-modal{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 330px;
+}
+
+.contenido-modal form{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido-modal form label{
+    margin-top: 10px;
+
+}
+
+.contenido-modal form input{
+    margin-top: 10px;
+    height: 30px;
+    width: 300px;
+    border: none;
+    background-color: #D9D9D9;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+    box-shadow: var(--sombra);
+}
+
+.contenedor-btns-form-modal{
+    display: flex;
+    justify-content: end;
+}
+
+.contenedor-btns-form-modal button{
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.btn-play {
+    transition: all 0.1s ease-in-out;
+}
+
+.btn-play:active {
+    filter: brightness(0.8);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);  /* Sombra reducida para simular presión */
+    transform: translateY(2px);  /* Efecto de empujar hacia abajo */
+}
+
+.rojo{
+    background-color: var(--rojo);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.2) ;
+    transition: all 0.1s ease-in-out;
+}
+
+.rojo:active {
+    background-color: #a25a5a;  /* Color más oscuro cuando se presiona */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);  /* Sombra reducida para simular presión */
+    transform: translateY(2px);  /* Efecto de empujar hacia abajo */
+}
+
+.rojo:disabled{
+    cursor: not-allowed
+}
+
+.verde{
+    background-color: var(--verde);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.2) ;
+    transition: all 0.1s ease-in-out;
+}
+
+.verde:active {
+    background-color: #58a35c;  /* Color más oscuro cuando se presiona */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);  /* Sombra reducida para simular presión */
+    transform: translateY(2px);  /* Efecto de empujar hacia abajo */
+}
+
+.verde:disabled {
+    cursor: not-allowed
+}
+
+/* Estilos modales detalles venta */
+
+.modal-detalle-montos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.modal-detalle-montos-div{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.modal-detalle-montos h3{
+    width: 40%;
+    margin: 5px 0;
+    text-align: end;
+    margin-right: 10px;
+}
+
+.modal-detalle-montos-div p{
+    width: 20%;
+    margin: 5px 0;
+}
+
+.linea-negra {
+    border: 0;
+    height: 2px;  /* Ajusta el grosor de la línea */
+    background-color: black;  /* Color negro */
+    margin: 5px 0;  /* Márgenes superior e inferior */
+}
+
+#btn-form-pagar-orden{
+    width: 140px;
+}
+
+
+/* AVISOS */
+.aviso {
+    width: 100%;
+    height: 60px;
+    background-color: #e2d880;  /* Amarillo */
+    color: #b58f1e;  /* Amarillo oscuro */
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+}
+
+.aviso p{
+    text-align: center;
+}

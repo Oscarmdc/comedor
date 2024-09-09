@@ -1,0 +1,84 @@
+/*GLOBALES*/
+body, html {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 95.5%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/*CABEZERA*/
+.cabeza{
+    height: 80px;
+    /* background-color: #6E7382; */
+    background-color: rgb(166, 146, 120);
+    color: white;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.cabeza-menu{
+    height: 40px;
+    width: 40px;
+    margin: 20px;
+    align-items: center;
+}
+
+.cabeza-menu img{
+    height: 40px;
+    width: 40px;
+}
+
+.logo{
+    height: 80px;
+    margin-left: auto;
+    
+}
+
+/*MENU*/
+.content{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-menu{
+    display: flex;
+}
+
+.link-tarjeta{
+    text-decoration: none;
+    color: black;
+}
+
+.tarjeta-opcion{
+    background-color: rgb(207, 196, 182);
+    height: 300px;
+    width: 200px;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-tarjeta img {
+    width: 100px;
+    height: 100px;
+}
+
+.btn-pantalla-completa{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 0;
+}
